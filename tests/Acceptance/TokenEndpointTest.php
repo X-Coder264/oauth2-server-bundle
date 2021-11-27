@@ -73,7 +73,6 @@ final class TokenEndpointTest extends AbstractAcceptanceTest
 
         $this->assertSame('foo', $accessToken->getClient()->getIdentifier());
         $this->assertNull($accessToken->getUserIdentifier());
-        $this->assertSame($jsonResponse['access_token'], (string) $accessToken);
     }
 
     public function testSuccessfulPasswordRequest(): void
@@ -130,7 +129,6 @@ final class TokenEndpointTest extends AbstractAcceptanceTest
 
         $this->assertSame('foo', $accessToken->getClient()->getIdentifier());
         $this->assertSame('user', $accessToken->getUserIdentifier());
-        $this->assertSame($jsonResponse['access_token'], (string) $accessToken);
         $this->assertSame($accessToken->getIdentifier(), $refreshToken->getAccessToken()->getIdentifier());
     }
 
@@ -197,7 +195,6 @@ final class TokenEndpointTest extends AbstractAcceptanceTest
         $this->assertTrue($wasRequestRefreshTokenEventDispatched);
 
         $this->assertSame($refreshToken->getAccessToken()->getClient()->getIdentifier(), $accessToken->getClient()->getIdentifier());
-        $this->assertSame($jsonResponse['access_token'], (string) $accessToken);
         $this->assertSame($accessToken->getIdentifier(), $refreshTokenEntity->getAccessToken()->getIdentifier());
     }
 
@@ -291,7 +288,6 @@ final class TokenEndpointTest extends AbstractAcceptanceTest
 
         $this->assertSame($authCode->getClient()->getIdentifier(), $accessToken->getClient()->getIdentifier());
         $this->assertSame($authCode->getUserIdentifier(), $accessToken->getUserIdentifier());
-        $this->assertSame($jsonResponse['access_token'], (string) $accessToken);
         $this->assertSame($accessToken->getIdentifier(), $refreshToken->getAccessToken()->getIdentifier());
     }
 
