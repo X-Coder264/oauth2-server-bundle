@@ -26,28 +26,41 @@ final class SymfonyEventDispatcherEmitter implements EmitterInterface
     public function removeListener($event, $listener)
     {
         // nothing to do here
+
+        return $this;
     }
 
     public function useListenerProvider(ListenerProviderInterface $provider)
     {
         // nothing to do here
+
+        return $this;
     }
 
     public function removeAllListeners($event)
     {
         // nothing to do here
+
+        return $this;
     }
 
-    public function hasListeners($event)
+    public function hasListeners($event): bool
     {
         // nothing to do here
+
+        return true;
     }
 
-    public function getListeners($event)
+    public function getListeners($event): array
     {
         // nothing to do here
+
+        return [];
     }
 
+    /**
+     * @param string|EventInterface $event
+     */
     public function emit($event): EventInterface
     {
         $preparedEvent = $this->prepareEvent($event);
@@ -57,10 +70,14 @@ final class SymfonyEventDispatcherEmitter implements EmitterInterface
         return $preparedEvent;
     }
 
+    /**
+     * @return EventInterface[]
+     */
     public function emitBatch(array $events): array
     {
         $results = [];
 
+        /** @var EventInterface|string $event */
         foreach ($events as $event) {
             $results[] = $this->emit($event);
         }
@@ -68,6 +85,9 @@ final class SymfonyEventDispatcherEmitter implements EmitterInterface
         return $results;
     }
 
+    /**
+     * @return EventInterface[]
+     */
     public function emitGeneratedEvents(GeneratorInterface $generator): array
     {
         $events = $generator->releaseEvents();
@@ -78,11 +98,15 @@ final class SymfonyEventDispatcherEmitter implements EmitterInterface
     public function addListener($event, $listener, $priority = self::P_NORMAL)
     {
         // nothing to do here
+
+        return $this;
     }
 
     public function addOneTimeListener($event, $listener, $priority = self::P_NORMAL)
     {
         // nothing to do here
+
+        return $this;
     }
 
     /**
